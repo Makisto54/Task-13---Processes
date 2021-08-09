@@ -9,14 +9,19 @@
 int main(void)
 {
     pid_t pid = 0;
-    char buf[BUF_SIZE] = {0};
+    char buf[BUF_SIZE];
     
     printf("Input commands without arguments (exit for exit)\n");
     
-    while(strncmp("exit", buf, 4) != 0)
-    {        
+    do
+    {      
         bzero(buf, BUF_SIZE); 
-        fscanf(stdin, "%s", buf);
+        fgets(buf, BUF_SIZE, stdin);
+        char *p = strchr(buf, '\n');
+        if (p != NULL)
+        {
+            buf[strlen(buf) - 1] = '\0';
+        }
 
         pid = fork();
         if (pid == 0)
@@ -31,7 +36,7 @@ int main(void)
         {
             wait(NULL);
         }      
-    }
+    } while (strncmp("exit", buf, 4) != 0);
 
     return 0;
 }
