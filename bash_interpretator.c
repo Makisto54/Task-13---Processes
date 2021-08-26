@@ -31,6 +31,7 @@ int main(void)
                 perror("EXEC ERROR");
                 exit(1);
             }
+            exit(0);
         }
         else
         {

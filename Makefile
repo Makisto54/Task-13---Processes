@@ -1,15 +1,26 @@
-.PHONY: clean
+CC := gcc
+CFLAGS := -c
+LDFLAGS := 
 
-all: process tree_process bash_interpretator
+TASK_1 := process
+TASK_2 := tree_process
+TASK_3 := bash_interpretator
 
-process: process.c
-	gcc -g process.c -o process
+.PHONY: all $(TASK_1) $(TASK_2) clean
 
-tree_process: tree_process.c
-	gcc -g tree_process.c -o tree_process
+all: $(TASK_1) $(TASK_2) $(TASK_3)
 
-bash_interpretator: bash_interpretator.c
-	gcc -g bash_interpretator.c -o bash_interpretator
+debug: CFLAGS += -g 
+debug: all
+
+$(TASK_1): $(TASK_1).c
+	$(CC) $(CFLAGS) $(TASK_1).c -o  $(TASK_1) $(LDFLAGS) 
+
+$(TASK_2): $(TASK_2).c
+	$(CC) $(CFLAGS) $(TASK_2).c -o $(TASK_2) $(LDFLAGS)
+
+$(TASK_3): $(TASK_3).c
+	$(CC) $(CFLAGS) $(TASK_2).c -o $(TASK_2) $(LDFLAGS)
 
 clean:
-	rm process tree_process bash_interpretator
+	rm -rf $(TASK_1) $(TASK_2)
