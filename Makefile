@@ -1,4 +1,5 @@
 CC := gcc
+CFLAGS :=
 
 TASK_1 := process
 TASK_2 := tree_process
@@ -12,13 +13,13 @@ debug: CFLAGS += -g
 debug: all
 
 $(TASK_1): $(TASK_1).c
-	$(CC) $(TASK_1).c -o  $(TASK_1)
+	$(CC) $(CFLAGS) $(TASK_1).c -o  $(TASK_1)
 
 $(TASK_2): $(TASK_2).c
-	$(CC) $(TASK_2).c -o $(TASK_2)
+	$(CC) $(CFLAGS) $(TASK_2).c -o $(TASK_2)
 
 $(TASK_3): $(TASK_3).c
-	$(CC) $(TASK_3).c -o $(TASK_3)
+	$(CC) $(CFLAGS) $(TASK_3).c -o $(TASK_3)
 
 clean:
 	rm -rf $(TASK_1) $(TASK_2) $(TASK_3)
